@@ -1,0 +1,7 @@
+"""Metadata for a page of results when a feature exposes paginated data."""
+type Pagination {
+  page: Int!
+  pageSize: Int!
+  total: Int!
+  hasNextPage: Boolean!
+}

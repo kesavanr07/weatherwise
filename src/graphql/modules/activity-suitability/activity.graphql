@@ -1,0 +1,61 @@
+enum ActivityType {
+  SKIING
+  SURFING
+  OUTDOOR_SIGHTSEEING
+  INDOOR_SIGHTSEEING
+}
+
+type LocationInfo {
+  name: String!
+  country: String!
+  latitude: Float!
+  longitude: Float!
+  timezone: String!
+}
+
+type DailyForecast {
+  date: String!
+  weatherCode: Int
+  temperatureMax: Float
+  temperatureMin: Float
+  precipitationProbabilityMax: Float
+  precipitationSum: Float
+  windSpeedMax: Float
+  snowfallSum: Float
+  sunrise: String
+  sunset: String
+  waveHeightMax: Float
+  wavePeriodMax: Float
+}
+
+type ActivityDayScore {
+  date: String!
+  score: Int
+  explanation: String!
+}
+
+type RankedActivity {
+  activity: ActivityType!
+  bestDay: ActivityDayScore
+  rankedDays: [ActivityDayScore!]!
+  missingData: Boolean!
+}
+
+type DataFreshness {
+  fetchedAt: String!
+  cacheAgeSeconds: Int!
+  isStale: Boolean!
+  expiresAt: String!
+}
+
+type ActivitySuitabilityResult {
+  location: LocationInfo!
+  forecast: [DailyForecast!]!
+  activities: [RankedActivity!]!
+  dataFreshness: DataFreshness!
+  warnings: [String!]!
+}
+
+extend type Query {
+  activitySuitability(location: String!, country: String, refresh: Boolean): ActivitySuitabilityResult!
+}
