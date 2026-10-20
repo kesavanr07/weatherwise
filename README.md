@@ -93,8 +93,6 @@ src/
 
 Contracts shared across features live in `common/interfaces/`. Feature-specific declarations stay beside the feature that owns them. TypeScript file names use dots to separate words and use `.interface.ts` or `.types.ts` for type declarations.
 
-Tests live in `tests/` folders beside their related source files. See [engineering.docs.md](engineering.docs.md) for module responsibilities, request flow, and design details.
-
 ## Technology choices and rationale
 
 - Node.js 22 or newer, as required by `package.json`; npm is used for dependency management and scripts.
